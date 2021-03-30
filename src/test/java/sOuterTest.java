@@ -26,4 +26,10 @@ class sOuterTest {
     public void tearDown() {
         System.setOut(standardOut);
     }
+
+    @Test
+    void main() {
+        String[] args = {};
+        sOuter.main(args);
+    }
 }
