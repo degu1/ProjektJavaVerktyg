@@ -31,5 +31,11 @@ class sOuterTest {
     void main() {
         String[] args = {};
         sOuter.main(args);
+
+        assertEquals("Leeeeeroy JEEEEENKINS", outputStreamCaptor.toString()
+                .trim());
+
+
+
     }
 }
