@@ -20,6 +20,9 @@ pipeline{
             steps {
                 sh 'mvn package'
             }
+            steps {
+                sh 'docker build -t souter:1.0 .'
+            }
         }
     }
 }
