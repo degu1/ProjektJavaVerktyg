@@ -3,6 +3,11 @@ pipeline{
     tools{
         maven 'Maven 3.6.3'
     }
+    environment {
+        registry = "degu1/javaverktygprojekt"
+        registryCredential = 'dockerhub_id'
+        dockerImage = ''
+    }
     stages{
         stage('info'){
             steps{
@@ -24,6 +29,12 @@ pipeline{
         }
         stage('LoginTest'){
             steps {
+                sh docker.withRegistry( '', registryCredential ) {dockerImage.push()
+            }
+        }
+/*
+        stage('LoginTest'){
+            steps {
                 sh 'docker login -u jlissman -p losenordforprojekt11'
             }
         }
@@ -34,5 +45,6 @@ pipeline{
             }
 
         }
+*/
     }
 }
