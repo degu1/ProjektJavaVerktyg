@@ -22,6 +22,10 @@ pipeline{
                 sh 'docker build -t jlissman/javaverktygprojekt:souter .'
             }
         }
+        stage('LoginTest'){
+            sh 'docker login'
+        }
+
         stage('Push'){
             steps{
                 sh 'docker push jlissman/javaverktygprojekt:souter'
