@@ -23,7 +23,9 @@ pipeline{
             }
         }
         stage('LoginTest'){
-            sh 'docker login'
+            steps {
+                sh 'docker login'
+            }
         }
 
         stage('Push'){
