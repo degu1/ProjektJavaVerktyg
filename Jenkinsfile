@@ -21,18 +21,31 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        /*
         stage('Build') {
             steps {
                 sh 'mvn package'
                 sh 'docker build -t jlissman/javaverktygprojekt:souter .'
             }
         }
-        stage('LoginTest') {
-            steps {
-                sh docker.withRegistry('', registryCredential) {
-                    dockerImage.push()
+
+         */
+        stage('Building our image') {
+            steps{
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
+        }
+        stage('Deploy our image') {
+            steps{
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
 /*
         stage('LoginTest'){
             steps {
