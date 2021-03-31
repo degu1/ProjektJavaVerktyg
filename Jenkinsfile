@@ -4,7 +4,7 @@ pipeline{
         maven 'Maven 3.6.3'
     }
     stages{
-        stage('Build'){
+        stage('info'){
             steps{
                 echo 'Group 4'
                 sh 'java --version'
@@ -16,11 +16,17 @@ pipeline{
                 sh 'mvn test'
             }
         }
-        stage('Deploy'){
+        stage('Build'){
             steps {
                 sh 'mvn package'
                 sh 'docker build -t souter:1.0 .'
             }
+        }
+        stage('Push'){
+            steps{
+                sh 'docker push jlissman/javaverktygprojekt:souter'
+            }
+
         }
     }
 }
