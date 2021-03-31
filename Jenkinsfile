@@ -19,7 +19,7 @@ pipeline{
         stage('Build'){
             steps {
                 sh 'mvn package'
-                sh 'docker build -t souter:1.0 .'
+                sh 'docker build -t jlissman/javaverktygprojekt:souter .'
             }
         }
         stage('Push'){
