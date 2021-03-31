@@ -24,7 +24,7 @@ pipeline{
         }
         stage('LoginTest'){
             steps {
-                sh 'docker login'
+                sh 'docker login -u jlissman -p losenordforprojekt11'
             }
         }
 
