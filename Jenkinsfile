@@ -1,6 +1,6 @@
-pipeline{
+pipeline {
     agent any
-    tools{
+    tools {
         maven 'Maven 3.6.3'
     }
     environment {
@@ -8,30 +8,31 @@ pipeline{
         registryCredential = 'dockerhub_id'
         dockerImage = ''
     }
-    stages{
-        stage('info'){
-            steps{
+    stages {
+        stage('info') {
+            steps {
                 echo 'Group 4'
                 sh 'java --version'
                 sh 'mvn clean compile'
             }
         }
-        stage('Test'){
-            steps{
+        stage('Test') {
+            steps {
                 sh 'mvn test'
             }
         }
-        stage('Build'){
+        stage('Build') {
             steps {
                 sh 'mvn package'
                 sh 'docker build -t jlissman/javaverktygprojekt:souter .'
             }
         }
-        stage('LoginTest'){
+        stage('LoginTest') {
             steps {
-                sh docker.withRegistry( '', registryCredential ) {dockerImage.push()
+                sh docker.withRegistry('', registryCredential) {
+                    dockerImage.push()
+                }
             }
-        }
 /*
         stage('LoginTest'){
             steps {
@@ -46,5 +47,6 @@ pipeline{
 
         }
 */
+        }
     }
 }
