@@ -40,6 +40,10 @@ pipeline {
         }
         stage('Deploy our image') {
             steps{
+
+                docker.withRegistry('', 'dockerhub_id') {
+                    sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                }
                 //script {
                     //docker.withRegistry( '', registryCredential ) {
                       //  dockerImage.push()
@@ -47,13 +51,13 @@ pipeline {
                 //}
             }
         }
-/*
+
         stage('LoginTest'){
             steps {
                 sh 'docker login -u jlissman -p losenordforprojekt11'
             }
         }
-
+/*
         stage('Push'){
             steps{
                 sh 'docker push jlissman/javaverktygprojekt:souter'
