@@ -9,7 +9,7 @@ pipeline {
                 withCredentials([
                         usernamePassword(credentialsId: 'dockerhub_id', usernameVariable: 'USER', passwordVariable: 'PASS')
                 ]) {
-                    echo $USER
+                    echo ${USER}
                     //sh 'docker login -u $USER -p $PASS'
                     //sh 'docker push jlissman/javaverktygprojekt:souter'
                 }
