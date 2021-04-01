@@ -41,7 +41,7 @@ pipeline {
         stage('Deploy our image') {
             steps{
 
-                docker.withRegistry('', 'dockerhub_id') {
+                sh docker.withRegistry('', 'dockerhub_id') {
                     sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                 }
                 //script {
